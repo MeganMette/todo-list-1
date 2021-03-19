@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh "bash python3 -m pytest --doctest-modules --junitxml=junit/test-results.xml --cov=application --cov-report=xml --cov-report=html"
+                sh "bash test.sh"
             }
         }
         stage('Deploy') {
             steps {
-                //
+                sh "bash deployment"
             }
         }
     }
