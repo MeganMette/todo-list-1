@@ -1,27 +1,21 @@
-pipeline{
-        agent any
-        stages{
-            stage(''){
-                steps{
-                    sh ''
-                }
-            }
-            
-           stage('') {
-                steps {
-                    sh ' '
-                    }
-                post {
-                    always {
-                        junit 'target/surefire-reports/*.xml'
-                    }
-                 }
-            }
-            
-            stage('Deploy'){
-                steps{
-                    sh java -jar /var/jenkins_home/workspace/springpenguin-training 
-                }
+pipeline {
+    agent any
+    export DATABASE_URI=sqlite:///data.db
+    stages {
+        stage('Install Dependencies') {
+            steps {
+               sh "bash install.sh"
             }
         }
+        stage('Test') {
+            steps {
+                sh "bash python3 -m pytest --doctest-modules --junitxml=junit/test-results.xml --cov=application --cov-report=xml --cov-report=html"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                //
+            }
+        }
+    }
 }
