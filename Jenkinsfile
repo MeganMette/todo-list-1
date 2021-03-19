@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    export DATABASE_URI=sqlite:///data.db
+    export DATABASE_URI=sqlite
     stages {
         stage('Install Dependencies') {
             steps {
