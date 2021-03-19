@@ -1,0 +1,27 @@
+pipeline{
+        agent any
+        stages{
+            stage(''){
+                steps{
+                    sh ''
+                }
+            }
+            
+           stage('') {
+                steps {
+                    sh ' '
+                    }
+                post {
+                    always {
+                        junit 'target/surefire-reports/*.xml'
+                    }
+                 }
+            }
+            
+            stage('Deploy'){
+                steps{
+                    sh java -jar /var/jenkins_home/workspace/springpenguin-training 
+                }
+            }
+        }
+}
